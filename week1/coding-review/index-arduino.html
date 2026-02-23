@@ -1,0 +1,577 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>ARDUINO Smart Design 2026: Coding Review</title>
+
+		<link rel="stylesheet" href="../reveal/css/reset.css">
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+
+		<link rel="stylesheet" href="../reveal/css/theme/moon.css">
+		<!-- <link rel="stylesheet" href="../reveal/css/theme/night.css"> -->
+		<!-- theme options: beige black blood league moon night serif simple sky solarized white  -->
+		<!-- black, league (joel's), sky (pleasant), blood -->
+
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal/lib/css/monokai.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/paper.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+    <style>
+     /* Local overrides */
+		 .reveal section .bigger {
+	    font-size: 1.3em !important;
+	  	}
+		 .reveal section .smaller {
+	    font-size: 0.8em !important;
+	  	}
+
+		 .reveal section .smallest {
+	    font-size: 0.7em !important;
+	  	}
+
+		 .reveal ul.spaced li {
+		 	 margin-bottom: 0.3em;
+		 }
+
+		 pre code {
+		 	/* max-width: 100% !important; */
+		 }
+
+		 code {
+			 /* display: inline; */
+			 background-color: #272922;
+		 }
+
+			.white {
+				color: #FFF !important;
+			}
+
+		 .reveal .hljs-ln-numbers {
+       opacity: 0.1;
+	   }
+
+ 		 .reveal section strong {
+ 		 	/* color: white; */
+ 			filter: sepia(1); /* compatibility with other themes? */
+ 			font-weight: normal;
+ 		 }
+
+		del.strike {
+			text-decoration: line-through !important;
+		}
+
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+
+
+<section>
+	<h2>Smart Design 2026 </h2>
+	<h2>BUILD WORKSHOP</h2>
+	<hr/>
+	<h2>INTRO & Coding Review</h2>
+
+	<br>
+	<strong>tinkercad.com</strong>
+</section>
+
+<!-- 
+Mentimeter embed test
+via https://churnikov.github.io/blog/mentimeter-in-revealmd/
+
+- No kbd controls! Not true! CLick to focus? How to get out? Need to use browser history
+  or #3 -style hash nums
+
+	// set when in iframe
+ 	document.querySelector('.reveal > .backgrounds').style['z-index'] = 1; 
+
+	// reset when not in iframe
+	document.querySelector('.reveal > .backgrounds').style['z-index'] = 0; 
+
+-->
+
+<!-- <section data-background-iframe="https://www.mentimeter.com/app/presentation/algrb1pg5gurhrmkkmkijeiiz96v6jh9/p4rbrx8wxmxg/embed#2"
+	data-background-interactive data-preload>
+</section> -->
+
+<section>
+   <h2>Agenda</h2>
+
+
+	<p>Here's what we'll cover:</p>
+
+  <ul>
+		<li>Admin / Overview / Motivation </li>
+		<li>Workshop staff introduction</li>
+		<li>Core programming concepts</li>
+		<li>Group code-along in TinkerCAD Arduino simulator
+			<ul><li><strong>tinkercad.com</strong></li></ul>
+		</li>
+		<!-- <li>Arduino environment setup?</li> -->
+	</ul>
+</section>
+
+<section>
+   <h2>Admin / Housekeeping</h2>
+	 <ul class="smaller">
+	 	<li class="fragment">Weeks 1-3: Friday, 10am-1pm / 2pm-5pm</li>
+	 	<li class="fragment">Weeks 4-12: Friday, 9am-12pm/2pm-5pm, ex. StuVac 6-10 April</li>
+	 	<!-- <li class="fragment"><span class="white">Extra classes on Tuesdays of weeks 9 and 11</span> (Assessment presentations on Friday of those weeks)</li> -->
+	 	<!-- <li class="fragment">Attendance is taken every session</li> -->
+	 	<li class="fragment">First 3 weeks are more like lectures + guided exercises; remainder are self-directed project build workshops with individual check-ins, plus 2x assessment presentations</li>
+		<li class="fragment">Please <del class="strike">STFU ssshhh</del> keep conversation to a minimum during these initial sessions so everyone can focus and benefit from them; the rest of the workshops are more casual</li>
+		<li class="fragment">Questions are welcome! Ask questions! <span class="white">Use Menti Q&A if shy!</span></li>
+		<li class="fragment">Slides will be posted to Canvas</li>
+	 	
+	 </ul>
+
+</section>
+
+
+
+
+
+
+
+<section>
+   <h2>Guiding Principles</h2>
+	 <p>a.k.a <em>"The Vibe"</em></p>
+	 <hr/>
+	 <ul class="smaller">
+	 	<li class="fragment">Experimental / Experiential / Exploratory</li>
+	 	<li class="fragment">Iterative / feedback / trial & error</li>
+	 	<li class="fragment">Maker / Hacker / Tinkerer / DIY ethos</li>
+		<li class="fragment">Self-driven / independent research / mutual aid</li>
+	 	<li class="fragment">RTFM / STFW</li>
+	 </ul>
+
+</section>
+
+
+<section>
+
+	<h2>MEET YOUR INSTRUCTORS</h2>
+
+	<br>
+	<span class="fragment">Luke Hammer<br>(<a href="mailto:Luke.Hammer@uts.edu.au">Luke.Hammer@uts.edu.au</a>)</span>
+	<br><br>
+	<span class="fragment">Chris Daniel<br>(<a
+			href="mailto:Christopher.Daniel@uts.edu.au">Christopher.Daniel@uts.edu.au</a>)</span>
+	<br><br>
+
+</section>
+
+<section>
+
+	<section>
+	<h2>ME ME ME</h2>
+
+	<ul class="smaller">
+		<li class="fragment">Coding since the early '90s: 25+ years of glory
+		<!-- <li class="fragment">Paid to code for 20+ years</li> -->
+		<li class="fragment">Very old... <span class="fragment">frail... </span><span class="fragment">treasure every precious
+				moment</span> </li>
+		<!-- <li class="fragment">BASIC on the C64, Hackin' &amp; Tinkerin' on the Amiga 500</li> -->
+		<li class="fragment">Web development: Sydney, Melbourne, Glasgow, Berlin, Bangkok</li>
+		<li class="fragment">Teaching: "Software Engineering Immersive" @ General Assembly;</span> 
+		<!-- <span class="fragment">Python, Javascript, React part-time courses;</span> -->
+			<span class="fragment">UTS Smart Design x6</span></li>
+		<li class="fragment">True loves:
+			<ul>
+				<li>C, Linux, open source, open web, keyboard shortcuts</li>
+				<li>Passion projects: music &amp; graphics/creative coding</li>
+				<li>Electronics projects: Arduino, Raspberry Pi</li>
+				<!-- <li>"Natural Interfaces": Kinect, Leap Motion</li> -->
+				<!-- <li class="fragment">Human interest corner: Scout</li> -->
+			</ul>
+		</li>
+	</ul>
+</section>
+	
+	<!-- projects -->
+<section data-background="img/solar_charger.jpeg" data-background-size="contain"></section>
+<section data-background-video="img/cube1.mov"
+	 data-background-size="contain"></section>
+<section data-background="img/cube_guts.jpeg" data-background-size="contain"></section>
+
+<section data-background="img/IMG_0092.jpg" data-background-size="contain"></section>
+<!-- <section data-background="img/IMG_0749.jpg" data-background-size="contain"></section> -->
+<section data-background-video="img/Scout-frisbee-champion.mp4" data-background-video-loop="true" data-background-video-muted="true" data-background-size="contain"></section>
+	
+
+
+</section> <!-- main slide-->
+
+<section>
+	<h2</h2>
+</section>
+
+<!-- Done by Chris! 	
+<section>
+   <h2>Why Coding?</h2>
+	 <p>"I Thought This Was a Design Subject"</p>
+	 <hr/>
+	 <ul class="smaller">
+	 	<li class="fragment">The practical project of this subject is to build an <strong>Experience Prototype</strong>: this needs to include integrated electronics (that's the "smart" bit)</li>
+	 	<li class="fragment">To create the interaction effects you want using those electronic components, they need to talk to each other in the right way</li>
+	 	<li class="fragment">It's <strong><em>much</em> easier</strong> to control how they talk to each other by using a <strong>small computer</strong> as the core of the circuit (instead of doing it all in pure low-level electronics)
+		<li class="fragment">This computer is the <strong>microcontroller</strong> (i.e. Arduino), and we need to program it with code, to tell it how to control the electronics</li>
+	 </ul>
+
+</section> -->
+
+
+<section>
+	<h2>Why Learn to Code?</h2>
+
+	<ul>
+		<li class="fragment">Programming is a useful tool (a "transferable skill") for many domains: science, comms, games ...interesting and fun?</li>
+		<li class="fragment">A highly structured, logical approach to solving problems, that you install in your brain <span class="fragment">...and then externalise to a computer; i.e., a way of thinking</span></li>
+		
+		<li class="fragment">Software is made out of language: <strong>we can create tools just by <em>describing them</em> clearly enough</strong> 🤔💥 </li>
+	</ul>
+
+  <br><br>
+
+	<h3 class="fragment">"Coding Literacy is the New Literacy"</h3>
+
+</section>
+
+
+<section>
+	<h2>What is Coding?</h2>
+
+	<ul class="smaller">
+	  <li class="fragment">Writing step-by-step instructions in a way a computer can understand in order to solve a problem... kind of like a <strong>recipe</strong></li>
+	  <li class="fragment">...<em>i.e.</em>, being so <a target="_new" href="https://www.azquotes.com/picture-quotes/quote-programs-must-be-written-for-people-to-read-and-only-incidentally-for-machines-to-execute-hal-abelson-66-82-89.jpg">clear and specific</a> about what you want done, that even a dumb literal computer can do it for you</li>
+		<li class="fragment">...using a <strong>programming language</strong>, which is halfway between:
+		  <ul>
+		    <li class="fragment">vague-but-intuitive <em>human</em> languages, and</li>
+		    <li class="fragment">the precise-but-difficult language of <em>mathematics</em></li>
+		  </ul>
+		</li>
+		<li class="fragment">We'll be using the <strong>Arduino</strong> language - a kind of customised C</li>
+		<li class="fragment">Programs are all a matter of <strong>input</strong> &rarr; <strong>processing</strong> &rarr; <strong>output</strong></li>
+		<li class="fragment">You may have already done programming without knowing it?</li>
+		<li class="fragment">Warning! Get comfortable with "<strong>Error-Driven Development</strong>":
+			<ul>
+				<li class="fragment"><strong>30%</strong> - writing new lines of code</li>
+				<li class="fragment"><strong>70%</strong> - figuring out why they don't work (usually <strong>typos</strong>)</li>
+			</ul>
+		</li>
+		<!-- <li class="fragment"><strong>RTFM</strong>! Use the web to find answers! <em>e.g.</em> <strong>processing.org</strong></li> -->
+	</ul>
+
+</section>
+
+
+<section>
+	<h2>AI: the forklift in the gym</h2>
+
+	<blockquote class="smaller" style="padding: 0.5em">
+	Using AI in education is like using a forklift in the gym. The weights do not actually need to be moved from place to	place. That is not the work. The work is what happens within you.
+	<br>
+	–<a href="https://bsky.app/profile/samhalpert.bsky.social/post/3lmt3coqvqk2w">Sam Halpert</a>
+	</blockquote>
+
+	<ul class="smaller">
+		<li class="fragment">The more you rely on AI, the less you understand for yourself</li>
+		<li class="fragment">The less you understand your code, the harder it is to customise it for your project, add featues, fix bugs</li>
+		<li class="fragment">Don't cheat yourself out of learning useful skills by outsourcing the working-it-out process; the struggle is the work!</li>
+		<li class="fragment">Think of it as a tool to help you learn and understand, rather than a magic box which makes stuff for you</li>
+	</ul>
+
+
+</section>
+
+
+
+<section>
+	<h2></h2>
+
+</section>
+
+
+<section>
+	<h2>Coding: Core Concepts</h2>
+	<ul>
+		<li>Data types and variables</li>
+		<li>Functions</li>
+		<li>Conditionals (if/else)</li>
+		<li>Debugging &amp; Common Mistakes</li>
+		<li><del>Loops? Arrays? Variable scope?</del></li>
+	</ul>
+
+	
+	<p>Just an overview! Don't panic.</p>
+
+</section>
+
+
+
+<section>
+	<h2>Data Types</h2>
+	<p>"What kinds of information can I work with?"</p>
+
+	<ul class="smaller">
+		<li class="fragment">Numbers:
+       <ul>
+       	<li class="fragment"><strong>int</strong> (integers/whole numbers): <code>1, 73542, -11, 0</code> ... </li>
+				<li class="fragment"><strong>unsigned long</strong> for very long positive integers like timestamps
+       	<li class="fragment"><strong>float</strong> (floating point numbers/decimals/fractions): <code>1.0, 0.5, 3.14159, -84632.1</code> </li>
+
+       </ul>
+		</li>
+		<li class="fragment"><strong>char</strong> (single characters): <code>'a', 'A', 'x', '&'</code> ...</li>
+		<li class="fragment"><strong>String</strong> (longer strings of characters): <code>"Hello World", "Please enter password:"</code></li>
+		<li class="fragment"><strong>bool</strong>: (boolean true/false, yes/no answers): only <code>true</code> and <code>false</code></li>
+		<li class="fragment">A list of any of the above types ("<strong>array</strong>"): <code>[]</code></li>
+		<li class="fragment">Lots of custom types when you start using libraries (classes/OOP)</li>
+	</ul>
+
+</section>
+
+<section>
+	<h2>Variables</h2>
+	<ul class="smaller">
+		<li class="fragment">A variable is a <strong>container</strong> for storing data</li>
+		<li class="fragment">It lets us give a clear, unique name to a piece of information</li>
+		<li class="fragment">It has two parts:
+      <ul>
+      	<li class="fragment">its <strong>name</strong> ("identifier") - make them as descriptive as possible!</li>
+      	<li class="fragment">the <strong>value</strong> being stored</li>
+      </ul>
+		</li>
+		<li class="fragment">To <em>declare</em> and <em>initialise</em> a variable, also specify its type:
+		</li>
+	</ul>
+	<pre class="fragment"><code>// Make me an integer var called `age` and store 25 into it 
+int age = 25;
+
+// Once created, you can change what's stored in it
+age = 30;
+age = age + 20;   // we can do maths
+
+// You CAN'T change the TYPE of data you store in it
+age = "Thirty";   // ❌ NO  - "invalid conversion" error
+
+String ageInWords = "Thirty";    // ✅  OK (make a new variable)
+
+
+
+
+
+	</code></pre>
+
+	<br>
+
+</section>
+
+
+<section>
+	<h2>Functions</h2>
+	<ul class="smaller">
+		<li class="fragment">A function is a named <strong>container</strong> for grouping related <strong>lines of code</strong></li>
+		<li class="fragment"><em>One of the most important building blocks of code</em>; most programs are just functions calling each other (divide and conquer)</li>
+		<li class="fragment">They can (optionally) have inputs (<strong>arguments</strong>) and outputs (<strong>return values</strong>) - in this way they're like miniature programs</li>
+		<li class="fragment">There are two aspects to a function:
+      <ul>
+      	<li class="fragment"><strong>defining</strong> the function (unless it's pre-defined)</li>
+				<li class="fragment"><strong>using</strong> (<em>a.k.a.</em> running/calling/invoking) the function</li>
+      </ul>
+		</li>
+		<li class="fragment">Arduino comes with a lot of pre-defined functions ready to use. These are like handy little reusable pieces of code, which you use to communicate with the electronics components in your project</li>
+	</ul>
+
+</section>
+
+<section>
+	<h2>Functions II</h2>
+	<ul class="smaller">
+		<li class="fragment">Most of the time we'll run pre-defined or "built-in" functions that Arduino makes available to us: <br>
+		<li class="fragment">Some take inputs (arguments), some don't; some give outputs that we can keep (return values), some don't. All combos are possible.</li>
+<pre class="fragment"><code>// Run the noInterrupts function
+// Note there are no inputs or outputs; just does something "behind the scenes"
+noInterrupts();
+
+// Run the delay function and tell it how long to delay (no return value)
+delay(1000); 
+
+// Run the random function and save the number it returns into a variable
+// ...give it two arguments which are the min and max range for the number
+int diceRoll = random( 1, 7 );    // could also write e.g. random( 10 )
+
+// Run the millis function and store its return value in a variable for later
+// No inputs (argument), but important outputs (return value)
+unsigned long runningTime = millis(); 
+
+Serial.println( runningTime ); // use the variable 
+
+// Enable serial communication (over USB) using this built-in function
+// It lives inside a toolkit variable of related functions called Serial:
+Serial.begin(115200);   // Give the speed as an argument
+
+
+
+</code></pre>
+	  </li>
+    
+	</ul>
+</section>
+
+<section>
+	<h2>Functions III</h2>
+	<ul class="smaller">
+		<li class="fragment">In Every Arduino project ("sketch") we'll define two functions which Arduino expects to exist; they will automatically be
+			run for us at the right time (we never run them "manually" ourselves):
+			<pre><code>// Put special `global` variables at the top of the file
+int myCounter = 0;
+
+
+// `setup` runs ONCE when the Arduino boots
+void setup(){
+  Serial.begin(115200);
+  // Other one-off setup code here
+} 
+
+// `loop` runs repeatedly, forever, after setup is finished
+void loop(){
+  Serial.println( "Hello world." );
+  myCounter = myCounter + 1;   // myCounter++;
+  delay(10);
+}  
+</code></pre>
+
+		</li>
+		<li class="fragment">You might even define and run your own custom functions</li>
+	</ul>
+</section>
+
+
+<section>
+	<h2>Conditionals</h2>
+	<ul class="smaller">
+		<li class="fragment">Conditionals, <em>a.k.a</em> branching, <em>a.k.a</em> if-else statements, let our programs do different things at different times, depending on the answers to questions we ask about our data:
+		<pre><code>
+if( buttonHeldTime > 1000 ){
+  openDoor();
+} else {
+  Serial.println("Still closed...");
+}
+
+</code></pre>
+	</li>
+	<li class="fragment">The expression inside the parentheses: <code>buttonHeldTime > 1000</code> is the <em>condition</em> - the question we are asking; it always has a yes/no answer, i.e. a boolean true/false value.</li>
+	<li class="fragment">You can ask lots of questions to <strong>compare</strong> data in different ways: <code> ==, <, >, <=, >=, != </code></li>
+	</ul>
+
+</section>
+
+
+<section>
+	<h2>Debugging</h2>
+	<ul class="smallest">
+		<li class="fragment">🎵 <strong><em>"If in doubt, print it out" </em></strong>🎵:
+		<pre><code>int buttonTimer = 500;
+
+// ... followed by some other code that maybe doesn't do what you expected...
+
+Serial.print( "buttonTimer is: " );
+Serial.println( buttonTimer );    // Will print  "Button timer: 500" 
+</code></pre>	
+	</li>
+	
+	<li class="fragment">Notice and read any errors given! Check the line numbers</li>
+	<li class="fragment">Style: <strong>indent correctly to make your code readable</strong>; use blank lines for clarity</li>
+	<li class="fragment">Write comments to explain unclear code to yourself and others</li>
+	<li class="fragment">Notice the font colours in your code editor! They are giving you information and often highlighting problems</li>	
+	<li class="fragment">Most common errors are <strong>typos</strong>: check spelling, case sensitivity, keywords 
+	<li class="fragment">Next most common are <strong>syntax errors</strong>: match all parentheses and brackets, close quote marks, use semicolons at end of line
+	<li class="fragment">Trickier <strong>logical errors</strong>: check variables, draw a diagram of the process, "pseudocode" it, simplify, process of elimination
+
+
+
+	</ul>
+
+</section>
+
+<section>
+	<!-- (Questions) -->
+</section>
+
+
+<section>
+	<h1>LET'S CODE</h1>
+	<img src="img/typingcat.gif" alt="">
+	<!-- <img src="https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif" alt=""> -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+		<script src="../reveal/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+
+        hash: true,  // add slide number to URL for stateful reload
+
+        transition: 'convex',  // 'slide' is the default
+
+				controls: false, // no arrows (annoying bounce)
+
+				navigationMode: 'linear',
+
+				dependencies: [
+					// { src: '../reveal/plugin/markdown/marked.js' },
+					// { src: '../reveal/plugin/markdown/markdown.js' },
+					{ src: '../reveal/plugin/notes/notes.js', async: true },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true }
+				]
+			});
+
+			// Turn off fragments for viewing, when `?nofrag` is used in URL
+			if ((new URLSearchParams(window.location.search)).has('nofrag') ){
+				document.querySelectorAll('.fragment').forEach(n => n.classList.remove('fragment'));
+			}
+		</script>
+	</body>
+</html>
